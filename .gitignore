@@ -11,6 +11,10 @@
 /.env*
 !/.env*.erb
 
+# Ignore master key (Render の環境変数 RAILS_MASTER_KEY に貼る)
+/config/master.key
+/config/credentials/*.key
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*

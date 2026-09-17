@@ -261,7 +261,8 @@ flowchart TD
 
 - フロントエンド：HTML / CSS（Tailwind CSS） / JavaScript（importmap, Turbo, Stimulus）
 - バックエンド：Ruby 3.2.0 / Rails 7.1
-- インフラ：MySQL 8（utf8mb4） / Puma
+- インフラ（ローカル）：MySQL 8（utf8mb4） / Puma
+- インフラ（本番）：Render / PostgreSQL / Puma
 - テスト：RSpec / FactoryBot / Minitest
 - テキストエディタ：Cursor
 - タスク管理：GitHub / SPEC.md
@@ -274,6 +275,7 @@ flowchart TD
 ```
 % git clone https://github.com/ユーザー名/リポジトリ名.git
 % cd original_app
+% bundle config set --local without production
 % bundle install
 % rails db:create
 % rails db:migrate
@@ -283,6 +285,33 @@ flowchart TD
 ```
 
 ブラウザで http://localhost:3000 を開く。開発中に CSS を更新する場合は、別ターミナルで `rails tailwindcss:watch` を起動するか、`bin/dev` を使う。
+
+ローカルは MySQL、Render 本番は PostgreSQL を使う。`pg` は production グループのため、ローカルでは入れなくてよい。
+
+# Render へのデプロイ
+
+GitHub にプッシュしたあと、[Render](https://render.com/) で Blueprint または Web Service を作る。
+
+1. Render で **PostgreSQL** を作成する（Web サービスと同じリージョン）
+2. **Web Service** を作成し、ランタイムは Ruby にする
+3. Build Command: `./bin/render-build.sh`
+4. Start Command: `bundle exec rails server`
+5. Health Check Path: `/up`
+6. 環境変数を設定する
+
+| Key | Value |
+| --- | --- |
+| `DATABASE_URL` | PostgreSQL の Internal Database URL |
+| `RAILS_MASTER_KEY` | ローカルの `config/master.key` の中身（Git には含めない） |
+| `RAILS_ENV` | `production` |
+| `BUNDLE_WITHOUT` | `development:test` |
+| `RAILS_SERVE_STATIC_FILES` | `true` |
+| `WEB_CONCURRENCY` | `1` |
+| `TZ` | `Asia/Tokyo` |
+
+`render.yaml` を使う場合は Dashboard の Blueprint からリポジトリを選び、`RAILS_MASTER_KEY` だけ手動で貼る。
+
+初回デプロイ時にマイグレーションとシードが走り、`admin@example.com` / `password` でログインできる。PostgreSQL は Render の無料枠がないことがあるので、有料プランが必要な場合がある。
 
 # 工夫したポイント
 
