@@ -1,0 +1,72 @@
+<div class="page-head">
+  <%= page_title "保管場所" %>
+  <div class="stack">
+    <% if admin? %>
+      <%= link_to "編集", edit_location_path(@location), class: "btn" %>
+    <% end %>
+    <%= link_to "一覧へ", locations_path, class: "btn btn--secondary" %>
+  </div>
+</div>
+
+<div class="card">
+  <dl class="dl-grid">
+    <dt>名称</dt>
+    <dd><%= @location.name %></dd>
+    <dt>説明</dt>
+    <dd><%= simple_format(@location.description.presence || "—") %></dd>
+    <dt>新品</dt>
+    <dd><%= number_with_delimiter(@location.stock_new_quantity) %> 個</dd>
+    <dt>使用済み</dt>
+    <dd><%= number_with_delimiter(@location.stock_used_quantity) %> 個</dd>
+    <dt>数量合計</dt>
+    <dd><%= number_with_delimiter(@location.stock_quantity) %> 個</dd>
+    <dt>在庫金額</dt>
+    <dd><%= yen(@location.stock_amount) %></dd>
+  </dl>
+</div>
+
+<section class="card">
+  <h2>この場所のダイス</h2>
+  <% if @dies.any? %>
+    <div class="table-wrap mb-0">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>ダイスID</th>
+          <th>ダイス名</th>
+          <th>型番</th>
+          <th class="num">新品</th>
+          <th class="num">使用済み</th>
+          <th class="num">計</th>
+          <th class="num">合計金額</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @dies.each do |die| %>
+          <tr class="<%= "is-low" if die.low_stock? %>">
+            <td><%= die.id %></td>
+            <td>
+              <%= link_to die.name, die %>
+              <% if die.low_stock? %><span class="badge badge--warn">在庫少</span><% end %>
+            </td>
+            <td><%= die.product_code %></td>
+            <td class="num"><%= number_with_delimiter(die.new_quantity) %></td>
+            <td class="num"><%= number_with_delimiter(die.used_quantity) %></td>
+            <td class="num"><%= number_with_delimiter(die.quantity) %></td>
+            <td class="num"><%= yen(die.total_amount) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  <% else %>
+    <p class="muted">この場所にダイスはありません。</p>
+  <% end %>
+</section>
+
+<% if admin? && @dies.empty? %>
+  <%= button_to "この保管場所を削除", @location, method: :delete, class: "btn btn--danger",
+        form: { data: { turbo_confirm: "保管場所「#{@location.name}」を削除します。よろしいですか？" } } %>
+<% elsif admin? %>
+  <p class="muted">ダイスが登録されているため、この保管場所は削除できません。</p>
+<% end %>

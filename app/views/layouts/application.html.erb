@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title><%= content_for?(:title) ? "#{yield(:title)} | ダイス管理" : "ダイス管理システム" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="min-h-screen">
+    <% if logged_in? %>
+      <header class="app-header">
+        <div class="app-header__brand">ダイス管理システム</div>
+        <nav class="app-nav">
+          <%= link_to "ダッシュボード", root_path, class: nav_class(root_path) %>
+          <%= link_to "ダイス", dies_path, class: nav_class(dies_path) %>
+          <%= link_to "保管場所", locations_path, class: nav_class(locations_path) %>
+          <%= link_to "決算・棚卸し", settlement_path, class: nav_class(settlement_path) %>
+          <% if admin? %>
+            <%= link_to "ユーザー", users_path, class: nav_class(users_path) %>
+          <% end %>
+        </nav>
+        <div class="app-header__user">
+          <span class="hidden sm:inline"><%= current_user.display_name %>（<%= current_user.role_label %>）</span>
+          <%= button_to "ログアウト", logout_path, method: :delete, class: "btn btn--ghost btn--small" %>
+        </div>
+      </header>
+    <% end %>
+
+    <main class="<%= logged_in? ? 'app-main' : 'app-main app-main--auth' %>">
+      <% if notice.present? %>
+        <p class="flash flash--notice"><%= notice %></p>
+      <% end %>
+      <% if alert.present? %>
+        <p class="flash flash--alert"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

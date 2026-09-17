@@ -1,0 +1,51 @@
+<div class="page-head">
+  <%= page_title "ダッシュボード" %>
+</div>
+
+<div class="stat-grid">
+  <div class="stat">
+    <div class="stat__label">ダイス種類数</div>
+    <div class="stat__value"><%= number_with_delimiter(@kind_count) %>種類</div>
+  </div>
+  <div class="stat">
+    <div class="stat__label">総在庫数量</div>
+    <div class="stat__value"><%= number_with_delimiter(@total_quantity) %>個</div>
+    <p class="stat__sub"><%= quantity_counts(@total_new_quantity, @total_used_quantity, @total_quantity) %></p>
+  </div>
+  <div class="stat stat--hero">
+    <div class="stat__label">総在庫金額</div>
+    <div class="stat__value"><%= yen(@total_amount) %></div>
+  </div>
+</div>
+
+<section class="card">
+  <h2>在庫が少ないダイス（<%= Die::LOW_STOCK_THRESHOLD %>個以下）</h2>
+  <% if @low_stock_dies.any? %>
+    <div class="table-wrap mb-0">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>ダイス名</th>
+          <th>保管場所</th>
+          <th class="num">新品</th>
+          <th class="num">使用済み</th>
+          <th class="num">計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @low_stock_dies.each do |die| %>
+          <tr class="is-low">
+            <td><%= link_to die.name, die %> <span class="badge badge--warn">在庫少</span></td>
+            <td><%= die.location.name %></td>
+            <td class="num"><%= number_with_delimiter(die.new_quantity) %></td>
+            <td class="num"><%= number_with_delimiter(die.used_quantity) %></td>
+            <td class="num">残り<%= number_with_delimiter(die.quantity) %>個</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  <% else %>
+    <p class="muted">在庫が少ないダイスはありません。</p>
+  <% end %>
+</section>

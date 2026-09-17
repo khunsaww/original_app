@@ -1,0 +1,23 @@
+<%= form_with model: user do |f| %>
+  <% if user.errors.any? %>
+    <div class="error-list">
+      <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-stack">
+    <%= render "users/registration_fields", f: f %>
+    <div>
+      <%= f.label :role %>
+      <%= f.select :role, [["一般", "general"], ["管理者", "admin"]] %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit class: "btn" %>
+    <%= link_to "キャンセル", user.persisted? ? user : users_path, class: "btn btn--secondary" %>
+  </div>
+<% end %>

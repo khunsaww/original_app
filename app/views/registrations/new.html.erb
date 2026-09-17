@@ -1,0 +1,26 @@
+<% content_for :title, "ユーザー登録" %>
+<div class="login-card">
+  <p class="mb-1 text-sm font-bold tracking-wide text-teal-700">工場ツール在庫</p>
+  <h1>ユーザー登録</h1>
+  <p class="muted">必要事項を入力して登録してください。</p>
+
+  <%= form_with model: @user, url: signup_path do |f| %>
+    <% if @user.errors.any? %>
+      <div class="error-list">
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-stack mt-6">
+      <%= render "users/registration_fields", f: f %>
+    </div>
+    <div class="form-actions">
+      <%= f.submit "登録する", class: "btn" %>
+      <%= link_to "ログインへ", login_path, class: "btn btn--secondary" %>
+    </div>
+  <% end %>
+</div>

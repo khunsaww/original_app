@@ -1,0 +1,75 @@
+<div class="page-head">
+  <%= page_title "ダイス一覧" %>
+  <%= link_to "新規登録", new_die_path, class: "btn" %>
+</div>
+
+<div class="card">
+  <%= form_with url: dies_path, method: :get, local: true, class: "search-form" do %>
+    <div>
+      <label for="name">ダイス名</label>
+      <%= text_field_tag :name, @search_params[:name] %>
+    </div>
+    <div>
+      <label for="product_code">型番</label>
+      <%= text_field_tag :product_code, @search_params[:product_code] %>
+    </div>
+    <div>
+      <label for="category">種類</label>
+      <%= text_field_tag :category, @search_params[:category] %>
+    </div>
+    <div>
+      <label for="location_id">保管場所</label>
+      <%= select_tag :location_id,
+            options_from_collection_for_select(@locations, :id, :name, @search_params[:location_id]),
+            include_blank: "すべて" %>
+    </div>
+    <div class="form-actions self-end">
+      <%= submit_tag "検索", class: "btn" %>
+      <%= link_to "クリア", dies_path, class: "btn btn--secondary" %>
+    </div>
+  <% end %>
+  <p>
+    該当 <strong><%= number_with_delimiter(@result_count) %></strong> 件　
+    <%= quantity_counts(@result_new_quantity, @result_used_quantity, @result_quantity) %>　
+    金額合計 <strong><%= yen(@result_amount) %></strong>
+  </p>
+</div>
+
+<div class="table-wrap">
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>ダイスID</th>
+      <th>ダイス名</th>
+      <th>型番</th>
+      <th>保管場所</th>
+      <th class="num">新品</th>
+      <th class="num">使用済み</th>
+      <th class="num">計</th>
+      <th class="num">単価</th>
+      <th class="num">合計金額</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @dies.each do |die| %>
+      <tr class="<%= "is-low" if die.low_stock? %>">
+        <td><%= die.id %></td>
+        <td>
+          <%= link_to die.name, die %>
+          <% if die.low_stock? %><span class="badge badge--warn">在庫少</span><% end %>
+        </td>
+        <td><%= die.product_code %></td>
+        <td><%= link_to die.location.name, die.location %></td>
+        <td class="num"><%= number_with_delimiter(die.new_quantity) %></td>
+        <td class="num"><%= number_with_delimiter(die.used_quantity) %></td>
+        <td class="num"><%= number_with_delimiter(die.quantity) %></td>
+        <td class="num"><%= yen(die.unit_price) %></td>
+        <td class="num"><%= yen(die.total_amount) %></td>
+      </tr>
+    <% end %>
+    <% if @dies.empty? %>
+      <tr><td colspan="9" class="muted">該当するダイスはありません。</td></tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

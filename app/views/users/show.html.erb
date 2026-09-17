@@ -1,0 +1,31 @@
+<div class="page-head">
+  <%= page_title "ユーザー詳細" %>
+  <div class="stack">
+    <%= link_to "編集", edit_user_path(@user), class: "btn" %>
+    <%= link_to "一覧へ", users_path, class: "btn btn--secondary" %>
+  </div>
+</div>
+
+<div class="card">
+  <dl class="dl-grid">
+    <dt>ニックネーム</dt>
+    <dd><%= @user.nickname %></dd>
+    <dt>氏名</dt>
+    <dd><%= @user.full_name %></dd>
+    <dt>フリガナ</dt>
+    <dd><%= @user.last_name_kana %> <%= @user.first_name_kana %></dd>
+    <dt>生年月日</dt>
+    <dd><%= l(@user.birthday) %></dd>
+    <dt>メールアドレス</dt>
+    <dd><%= @user.email %></dd>
+    <dt>権限</dt>
+    <dd><%= @user.role_label %></dd>
+  </dl>
+</div>
+
+<% if @user != current_user %>
+  <%= button_to "このユーザーを削除", @user, method: :delete, class: "btn btn--danger",
+        form: { data: { turbo_confirm: "ユーザー「#{@user.nickname}」を削除します。よろしいですか？" } } %>
+<% else %>
+  <p class="muted">ログイン中の自分自身は削除できません。</p>
+<% end %>

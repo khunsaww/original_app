@@ -1,0 +1,68 @@
+<div class="page-head">
+  <%= page_title "決算・棚卸し" %>
+</div>
+
+<p class="muted">基準：現在庫（この画面を開いた時点の最新数量・単価）。金額は新品と使用済みを別々に計算する（数量 × 単価）。</p>
+
+<div class="stat-grid">
+  <div class="stat">
+    <div class="stat__label">新品の在庫金額</div>
+    <div class="stat__value"><%= yen(@total_new_amount) %></div>
+    <p class="stat__sub">新品 <%= number_with_delimiter(@total_new_quantity) %> 個 × 各単価</p>
+  </div>
+  <div class="stat">
+    <div class="stat__label">使用済みの在庫金額</div>
+    <div class="stat__value"><%= yen(@total_used_amount) %></div>
+    <p class="stat__sub">使用済み <%= number_with_delimiter(@total_used_quantity) %> 個 × 各単価</p>
+  </div>
+  <div class="stat stat--hero">
+    <div class="stat__label">全体の在庫金額（総資産価値）</div>
+    <div class="stat__value"><%= yen(@total_amount) %></div>
+    <p class="stat__sub">新品金額 ＋ 使用済み金額</p>
+  </div>
+  <div class="stat">
+    <div class="stat__label">ダイスの総種類数</div>
+    <div class="stat__value"><%= number_with_delimiter(@kind_count) %>種類</div>
+  </div>
+  <div class="stat">
+    <div class="stat__label">ダイスの総数量</div>
+    <div class="stat__value"><%= number_with_delimiter(@total_quantity) %>個</div>
+    <p class="stat__sub"><%= quantity_counts(@total_new_quantity, @total_used_quantity, @total_quantity) %></p>
+  </div>
+</div>
+
+<section class="card">
+  <h2>保管場所ごとの在庫金額</h2>
+  <% if @location_totals.any? %>
+    <div class="table-wrap mb-0">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>保管場所</th>
+          <th class="num">新品</th>
+          <th class="num">新品金額</th>
+          <th class="num">使用済み</th>
+          <th class="num">使用済み金額</th>
+          <th class="num">計</th>
+          <th class="num">在庫金額</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @location_totals.each do |_id, name, new_qty, used_qty, quantity, new_amount, used_amount, amount| %>
+          <tr>
+            <td><%= name %></td>
+            <td class="num"><%= number_with_delimiter(new_qty) %></td>
+            <td class="num"><%= yen(new_amount) %></td>
+            <td class="num"><%= number_with_delimiter(used_qty) %></td>
+            <td class="num"><%= yen(used_amount) %></td>
+            <td class="num"><%= number_with_delimiter(quantity) %></td>
+            <td class="num"><%= yen(amount) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  <% else %>
+    <p class="muted">集計する在庫がありません。</p>
+  <% end %>
+</section>

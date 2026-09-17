@@ -1,0 +1,41 @@
+<div>
+  <%= f.label :nickname %>
+  <%= f.text_field :nickname, required: true %>
+</div>
+<div>
+  <%= f.label :email %>
+  <%= f.email_field :email, required: true, autocomplete: "username" %>
+</div>
+<div>
+  <%= f.label :password %>
+  <%= f.password_field :password, autocomplete: "new-password", required: !f.object.persisted? %>
+  <% if f.object.persisted? %>
+    <p class="muted">空のまま保存するとパスワードは変わりません。</p>
+  <% else %>
+    <p class="muted">8文字以上で入力してください。</p>
+  <% end %>
+</div>
+<div>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+</div>
+<div>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, required: true %>
+</div>
+<div>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, required: true %>
+</div>
+<div>
+  <%= f.label :last_name_kana %>
+  <%= f.text_field :last_name_kana, required: true %>
+</div>
+<div>
+  <%= f.label :first_name_kana %>
+  <%= f.text_field :first_name_kana, required: true %>
+</div>
+<div>
+  <%= f.label :birthday %>
+  <%= f.date_field :birthday, required: true %>
+</div>

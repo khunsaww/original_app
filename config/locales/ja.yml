@@ -1,0 +1,66 @@
+ja:
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: を入力してください
+      taken: はすでに存在します
+      invalid: は不正な値です
+      not_a_number: は数値で入力してください
+      not_an_integer: は整数で入力してください
+      greater_than_or_equal_to: は%{count}以上の値にしてください
+      too_short: は%{count}文字以上で入力してください
+      confirmation: が一致しません
+  activerecord:
+    models:
+      user: ユーザー
+      location: 保管場所
+      die: ダイス
+      quantity_change: 数量変更履歴
+    attributes:
+      user:
+        email: メールアドレス
+        nickname: ニックネーム
+        password: パスワード
+        password_confirmation: パスワード（確認）
+        last_name: 姓
+        first_name: 名
+        last_name_kana: 姓（カナ）
+        first_name_kana: 名（カナ）
+        birthday: 生年月日
+        role: 権限
+      location:
+        name: 名称
+        description: 説明
+      die:
+        name: ダイス名
+        product_code: 型番
+        size: サイズ
+        category: 種類
+        location: 保管場所
+        location_id: 保管場所
+        new_quantity: 新品
+        used_quantity: 使用済み
+        unit_price: 単価
+        purchase_date: 購入日
+        notes: 備考
+    errors:
+      messages:
+        restrict_dependent_destroy: 関連するダイスがあるため削除できません
+  helpers:
+    submit:
+      create: 登録する
+      update: 更新する
+  number:
+    currency:
+      format:
+        unit: "¥"
+        format: "%u%n"
+        precision: 0
+        delimiter: ","
+        separator: "."
+  date:
+    formats:
+      default: "%Y/%m/%d"
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"

@@ -1,0 +1,86 @@
+<div class="page-head">
+  <%= page_title "ダイス詳細" %>
+  <div class="stack">
+    <%= link_to "編集", edit_die_path(@die), class: "btn" %>
+    <%= link_to "一覧へ", dies_path, class: "btn btn--secondary" %>
+  </div>
+</div>
+
+<div class="card">
+  <dl class="dl-grid">
+    <dt>ダイスID</dt>
+    <dd><%= @die.id %></dd>
+    <dt>ダイス名</dt>
+    <dd>
+      <%= @die.name %>
+      <% if @die.low_stock? %><span class="badge badge--warn">在庫少</span><% end %>
+    </dd>
+    <dt>型番</dt>
+    <dd><%= @die.product_code %></dd>
+    <dt>サイズ</dt>
+    <dd><%= @die.size.presence || "—" %></dd>
+    <dt>種類</dt>
+    <dd><%= @die.category.presence || "—" %></dd>
+    <dt>保管場所</dt>
+    <dd><%= link_to @die.location.name, @die.location %></dd>
+    <dt>新品</dt>
+    <dd><%= number_with_delimiter(@die.new_quantity) %> 個</dd>
+    <dt>使用済み</dt>
+    <dd><%= number_with_delimiter(@die.used_quantity) %> 個</dd>
+    <dt>数量計</dt>
+    <dd><%= number_with_delimiter(@die.quantity) %> 個</dd>
+    <dt>単価</dt>
+    <dd><%= yen(@die.unit_price) %></dd>
+    <dt>合計金額</dt>
+    <dd><strong><%= yen(@die.total_amount) %></strong>（新品金額 ＋ 使用済み金額）</dd>
+    <dt>購入日</dt>
+    <dd><%= @die.purchase_date.present? ? l(@die.purchase_date) : "—" %></dd>
+    <dt>備考</dt>
+    <dd><%= simple_format(@die.notes.presence || "—") %></dd>
+  </dl>
+</div>
+
+<%= button_to "このダイスを削除", @die, method: :delete, class: "btn btn--danger",
+      form: { data: { turbo_confirm: "ダイス「#{@die.name}」を削除します。よろしいですか？" } } if admin? %>
+
+<section class="card">
+  <h2>数量変更履歴</h2>
+  <% if @quantity_changes.any? %>
+    <div class="table-wrap mb-0">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>日時</th>
+          <th>担当</th>
+          <th class="num">新品</th>
+          <th class="num">使用済み</th>
+          <th class="num">計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @quantity_changes.each do |change| %>
+          <tr>
+            <td><%= l(change.created_at) %></td>
+            <td><%= change.actor_name %></td>
+            <td class="num">
+              <%= number_with_delimiter(change.new_quantity_before) %> → <%= number_with_delimiter(change.new_quantity_after) %>
+              <span class="muted">(<%= signed_number(change.new_quantity_delta) %>)</span>
+            </td>
+            <td class="num">
+              <%= number_with_delimiter(change.used_quantity_before) %> → <%= number_with_delimiter(change.used_quantity_after) %>
+              <span class="muted">(<%= signed_number(change.used_quantity_delta) %>)</span>
+            </td>
+            <td class="num">
+              <%= number_with_delimiter(change.new_quantity_before + change.used_quantity_before) %>
+              →
+              <%= number_with_delimiter(change.new_quantity_after + change.used_quantity_after) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  <% else %>
+    <p class="muted">数量の変更履歴はまだありません。</p>
+  <% end %>
+</section>

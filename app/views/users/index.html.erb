@@ -1,0 +1,29 @@
+<div class="page-head">
+  <%= page_title "ユーザー一覧" %>
+  <%= link_to "新規登録", new_user_path, class: "btn" %>
+</div>
+
+<div class="table-wrap">
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>ニックネーム</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>権限</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= link_to user.nickname, user %></td>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role_label %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
