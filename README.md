@@ -109,7 +109,8 @@ Basic認証はありません。
 
 ログイン後のトップ画面。ダイス種類数、総在庫数量（新品 / 使用済み / 計）、総在庫金額、在庫少（合計 5 個以下）の一覧を表示する。
 
-ダッシュボード
+- ダッシュボード
+
 [![Image from Gyazo](https://i.gyazo.com/12a4e2279416b3960577ee88d0d5ff3a.png)](https://gyazo.com/12a4e2279416b3960577ee88d0d5ff3a)
 
 ## ダイス一覧・検索
@@ -124,27 +125,33 @@ Basic認証はありません。
 
 ダイス名、型番、サイズ、種類、保管場所、新品数量、使用済み数量、単価（管理者のみ変更可）、購入日、備考を登録・更新する。合計金額は（新品金額 ＋ 使用済み金額）を自動計算する。数量変更時は確認ダイアログを出す。
 
-![ダイス登録]
+- ダイス登録
+  
 [![Image from Gyazo](https://i.gyazo.com/d6fdd23cd9c10b54aebf8af72f204c8f.gif)](https://gyazo.com/d6fdd23cd9c10b54aebf8af72f204c8f)
 
-![ダイス編集]
+- ダイス編集
+  
 [![Image from Gyazo](https://i.gyazo.com/fbe4313c65930f167a574292253635c1.gif)](https://gyazo.com/fbe4313c65930f167a574292253635c1)
 
 ## 数量変更履歴
 
 数量が変わったときだけ履歴を 1 行追加する。詳細画面で日時、担当、新品・使用済みの変更前後を新しい順に確認できる。名前や単価だけの更新では履歴を作らない。
 
-![数量変更履歴]
+- 数量変更履歴
+  
 [![Image from Gyazo](https://i.gyazo.com/f83a744eeb7a95313a721951f1907373.png)](https://gyazo.com/f83a744eeb7a95313a721951f1907373)
 
 ## 保管場所
 
 ダイスの保管場所を登録・編集できます。
 
-![保管場所登録]
+- 保管場所登録
+  
 [![Image from Gyazo](https://i.gyazo.com/6f62f0e66a0f86521446a496c65dac0b.gif)](https://gyazo.com/6f62f0e66a0f86521446a496c65dac0b)
 
-![保管場所編集]([![Image from Gyazo](https://i.gyazo.com/08880834ee845f5915a1e4f4b91aec85.gif)](https://gyazo.com/08880834ee845f5915a1e4f4b91aec85))
+- 保管場所編集
+
+[![Image from Gyazo](https://i.gyazo.com/08880834ee845f5915a1e4f4b91aec85.gif)](https://gyazo.com/08880834ee845f5915a1e4f4b91aec85)
 
 ## 決算・棚卸し
 
@@ -156,13 +163,17 @@ Basic認証はありません。
 
 管理者はユーザーの登録・編集・削除ができます。
 
-![ユーザー登録]
+- ユーザー登録
+  
 [![Image from Gyazo](https://i.gyazo.com/d671e9dd957a717654c9bce6bd09b09b.gif)](https://gyazo.com/d671e9dd957a717654c9bce6bd09b09b)
 
-![ユーザー削除]
+- ユーザー削除
+- 
 [![Image from Gyazo](https://i.gyazo.com/46e2ddd2862b3734ebb9cb0c0aa89398.gif)](https://gyazo.com/46e2ddd2862b3734ebb9cb0c0aa89398)
 
-![ユーザー編集][![Image from Gyazo](https://i.gyazo.com/e1879492284d786d8cf98311dad59032.gif)](https://gyazo.com/e1879492284d786d8cf98311dad59032)
+- ユーザー編集
+
+[![Image from Gyazo](https://i.gyazo.com/e1879492284d786d8cf98311dad59032.gif)](https://gyazo.com/e1879492284d786d8cf98311dad59032)
 
 # 実装予定の機能
 
