@@ -100,7 +100,8 @@ Basic認証はありません。
 ## ユーザー登録・ログイン
 
 メールアドレスとパスワードでログインできます。
--- ユーザー登録・ログイン
+
+- ユーザー登録・ログイン
 
 [![Image from Gyazo](https://i.gyazo.com/882cf855172ac49798889bdb5e7a3f2a.gif)](https://gyazo.com/882cf855172ac49798889bdb5e7a3f2a)
 
@@ -115,7 +116,7 @@ Basic認証はありません。
 
 ダイス名、型番、種類、保管場所で AND 検索できる。一覧には新品・使用済み・計・単価・合計金額を出し、在庫少の行はラベルと背景色で強調する。検索結果の件数と金額合計も表示する。
 
-### ダイス一覧
+- ダイス一覧
 
 [![Image from Gyazo](https://i.gyazo.com/dca68eca9231520a4e3905150e3fdf74.gif)](https://gyazo.com/dca68eca9231520a4e3905150e3fdf74)
 
