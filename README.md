@@ -100,7 +100,7 @@ Basic認証はありません。
 ## ユーザー登録・ログイン
 
 メールアドレスとパスワードでログインできます。
-![ユーザー登録・ログイン]
+-- ユーザー登録・ログイン
 
 [![Image from Gyazo](https://i.gyazo.com/882cf855172ac49798889bdb5e7a3f2a.gif)](https://gyazo.com/882cf855172ac49798889bdb5e7a3f2a)
 
