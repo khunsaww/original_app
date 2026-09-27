@@ -168,14 +168,14 @@ Basic認証はありません。
 [![Image from Gyazo](https://i.gyazo.com/d671e9dd957a717654c9bce6bd09b09b.gif)](https://gyazo.com/d671e9dd957a717654c9bce6bd09b09b)
 
 - ユーザー削除
-- 
+ 
 [![Image from Gyazo](https://i.gyazo.com/46e2ddd2862b3734ebb9cb0c0aa89398.gif)](https://gyazo.com/46e2ddd2862b3734ebb9cb0c0aa89398)
 
 - ユーザー編集
 
 [![Image from Gyazo](https://i.gyazo.com/e1879492284d786d8cf98311dad59032.gif)](https://gyazo.com/e1879492284d786d8cf98311dad59032)
 
-## 管理者によるダイス削除・ユーザー管理
+### 管理者によるダイス削除
 
 一般ユーザーと管理者で操作できる機能を分け、ダイスの削除や単価の変更、保管場所・ユーザーの管理は管理者のみが行えるます。
 
