@@ -97,59 +97,71 @@ Basic認証はありません。
 
 # 実装した機能についての画像やGIFおよびその説明
 
-Gyazo / Gyazo GIF で撮影した画像 URL を、各項目の `![](URL)` に貼ってください。
-
 ## ユーザー登録・ログイン
 
-メールアドレスとパスワードでログインする。新規登録ではニックネーム、氏名（全角）、フリガナ（全角カタカナ）、生年月日、パスワード（8文字以上）を入力する。登録後はログイン状態でダッシュボードへ遷移する。
-
-![ユーザー登録・ログイン](https://gyazo.com/xxxxxxxx)
+メールアドレスとパスワードでログインできます。
+![ユーザー登録・ログイン]
+[![Image from Gyazo](https://i.gyazo.com/882cf855172ac49798889bdb5e7a3f2a.gif)](https://gyazo.com/882cf855172ac49798889bdb5e7a3f2a)
 
 ## ダッシュボード
 
 ログイン後のトップ画面。ダイス種類数、総在庫数量（新品 / 使用済み / 計）、総在庫金額、在庫少（合計 5 個以下）の一覧を表示する。
 
-![ダッシュボード](https://gyazo.com/xxxxxxxx)
+![ダッシュボード]
+[![Image from Gyazo](https://i.gyazo.com/12a4e2279416b3960577ee88d0d5ff3a.png)](https://gyazo.com/12a4e2279416b3960577ee88d0d5ff3a)
 
 ## ダイス一覧・検索
 
 ダイス名、型番、種類、保管場所で AND 検索できる。一覧には新品・使用済み・計・単価・合計金額を出し、在庫少の行はラベルと背景色で強調する。検索結果の件数と金額合計も表示する。
 
-![ダイス一覧](https://gyazo.com/xxxxxxxx)
+![ダイス一覧]
+[![Image from Gyazo](https://i.gyazo.com/dca68eca9231520a4e3905150e3fdf74.gif)](https://gyazo.com/dca68eca9231520a4e3905150e3fdf74)
 
 ## ダイス登録・編集
 
 ダイス名、型番、サイズ、種類、保管場所、新品数量、使用済み数量、単価（管理者のみ変更可）、購入日、備考を登録・更新する。合計金額は（新品金額 ＋ 使用済み金額）を自動計算する。数量変更時は確認ダイアログを出す。
 
-![ダイス編集](https://gyazo.com/xxxxxxxx)
+![ダイス登録]
+[![Image from Gyazo](https://i.gyazo.com/d6fdd23cd9c10b54aebf8af72f204c8f.gif)](https://gyazo.com/d6fdd23cd9c10b54aebf8af72f204c8f)
+
+![ダイス編集]
+[![Image from Gyazo](https://i.gyazo.com/fbe4313c65930f167a574292253635c1.gif)](https://gyazo.com/fbe4313c65930f167a574292253635c1)
 
 ## 数量変更履歴
 
 数量が変わったときだけ履歴を 1 行追加する。詳細画面で日時、担当、新品・使用済みの変更前後を新しい順に確認できる。名前や単価だけの更新では履歴を作らない。
 
-![数量変更履歴](https://gyazo.com/xxxxxxxx)
+![数量変更履歴]
+[![Image from Gyazo](https://i.gyazo.com/f83a744eeb7a95313a721951f1907373.png)](https://gyazo.com/f83a744eeb7a95313a721951f1907373)
 
 ## 保管場所
 
-場所の一覧・詳細・登録・編集。詳細ではその場所の新品・使用済み・在庫金額と、置いてあるダイス一覧を表示する。ダイスが残っている場所は削除できない。登録・編集・削除は管理者のみ。
+ダイスの保管場所を登録・編集できます。
 
-![保管場所](https://gyazo.com/xxxxxxxx)
+![保管場所登録]
+[![Image from Gyazo](https://i.gyazo.com/6f62f0e66a0f86521446a496c65dac0b.gif)](https://gyazo.com/6f62f0e66a0f86521446a496c65dac0b)
+
+![保管場所編集]([![Image from Gyazo](https://i.gyazo.com/08880834ee845f5915a1e4f4b91aec85.gif)](https://gyazo.com/08880834ee845f5915a1e4f4b91aec85))
 
 ## 決算・棚卸し
 
 現在庫を基準に、新品金額（新品数量 × 単価）と使用済み金額（使用済み数量 × 単価）を分けて集計する。全体の在庫金額は両者の和。保管場所ごとの新品金額・使用済み金額の内訳表もある。
 
-![決算・棚卸し](https://gyazo.com/xxxxxxxx)
+[![Image from Gyazo](https://i.gyazo.com/50c03642f7463c36608a771b79e6be8d.png)](https://gyazo.com/50c03642f7463c36608a771b79e6be8d)
 
-## 権限とユーザー管理
+## ユーザー管理
 
-一般はダイスの閲覧・登録・数量更新まで。単価変更、ダイス削除、保管場所のマスタ操作、ユーザー管理は管理者のみ。管理者画面からユーザーの CRUD ができ、最後の管理者とログイン中の自分自身は削除できない。
+管理者はユーザーの登録・編集・削除ができます。
 
-![ユーザー管理](https://gyazo.com/xxxxxxxx)
+![ユーザー登録]
+[![Image from Gyazo](https://i.gyazo.com/d671e9dd957a717654c9bce6bd09b09b.gif)](https://gyazo.com/d671e9dd957a717654c9bce6bd09b09b)
+
+![ユーザー削除]
+[![Image from Gyazo](https://i.gyazo.com/46e2ddd2862b3734ebb9cb0c0aa89398.gif)](https://gyazo.com/46e2ddd2862b3734ebb9cb0c0aa89398)
+
+![ユーザー編集][![Image from Gyazo](https://i.gyazo.com/e1879492284d786d8cf98311dad59032.gif)](https://gyazo.com/e1879492284d786d8cf98311dad59032)
 
 # 実装予定の機能
-
-[SPEC.md](./SPEC.md) の第2版ロードマップより。
 
 * CSV出力・インポート
 * QRコード・バーコードによるダイス検索
@@ -160,8 +172,6 @@ Gyazo / Gyazo GIF で撮影した画像 URL を、各項目の `![](URL)` に貼
 ---
 
 # データベース設計
-
-draw.io の原図は [original_app.dio](./original_app.dio) です。
 
 ```mermaid
 erDiagram
