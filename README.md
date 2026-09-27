@@ -175,6 +175,28 @@ Basic認証はありません。
 
 [![Image from Gyazo](https://i.gyazo.com/e1879492284d786d8cf98311dad59032.gif)](https://gyazo.com/e1879492284d786d8cf98311dad59032)
 
+## 管理者によるダイス削除・ユーザー管理
+
+一般ユーザーと管理者で操作できる機能を分け、ダイスの削除や単価の変更、保管場所・ユーザーの管理は管理者のみが行えるます。
+
+- 管理者としてダイスの削除
+
+[![Image from Gyazo](https://i.gyazo.com/09ba5f014c697bb9c2f7db2b0b3ae58d.gif)](https://gyazo.com/09ba5f014c697bb9c2f7db2b0b3ae58d)
+
+- 一般ユーザーの場合、削除ボタンは表示されない
+
+[![Image from Gyazo](https://i.gyazo.com/ce64ee74193102c237d9c14fd1405467.png)](https://gyazo.com/ce64ee74193102c237d9c14fd1405467)
+
+
+- 管理者として保管場所の削除
+
+[![Image from Gyazo](https://i.gyazo.com/6241dc37d1a61cf2b1dec6803f48ad3b.gif)](https://gyazo.com/6241dc37d1a61cf2b1dec6803f48ad3b)
+
+- 一般ユーザーの場合、保管場所の削除ボタンは表示されない
+
+[![Image from Gyazo](https://i.gyazo.com/85a15af395ee64c63a7b153fe44183c1.png)](https://gyazo.com/85a15af395ee64c63a7b153fe44183c1)
+
+
 # 実装予定の機能
 
 * CSV出力・インポート
